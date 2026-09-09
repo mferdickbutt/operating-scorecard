@@ -1,0 +1,165 @@
+:root {
+  --bg: #f3f5f8;
+  --card: #ffffff;
+  --ink: #1b2430;
+  --muted: #5b6775;
+  --line: #d5dde6;
+  --accent: #0b4f8a;
+  --head: #eef3f8;
+  --on: #0b7a4b;
+  --watch: #9a6700;
+  --off: #b42318;
+  --escalate: #8a1538;
+  --on-bg: #e7f6ee;
+  --watch-bg: #fff6e0;
+  --off-bg: #fdecea;
+  --escalate-bg: #f8e4ea;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 15px/1.45 "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+}
+
+header h1 {
+  margin: 0 0 0.35rem;
+  font-size: 1.65rem;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+}
+
+.lede, .note {
+  color: var(--muted);
+  max-width: 62rem;
+}
+
+.toolbar {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin: 1rem 0 0.5rem;
+}
+
+.toolbar.hidden { display: none; }
+
+.toolbar select {
+  font: inherit;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
+  gap: 0.75rem;
+  margin: 1.25rem 0 1.5rem;
+  padding: 0;
+}
+
+.kpi {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.75rem 0.9rem;
+}
+
+.kpi dt {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.kpi dd {
+  margin: 0.2rem 0 0;
+  font-size: 1.25rem;
+  font-weight: 650;
+}
+
+h2 { font-size: 1.1rem; margin: 0 0 0.6rem; }
+
+.table-wrap {
+  overflow-x: auto;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+table.metrics {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 68rem;
+  font-size: 0.86rem;
+}
+
+table.metrics caption {
+  caption-side: top;
+  text-align: left;
+  padding: 0.85rem 0.9rem 0.5rem;
+  font-weight: 600;
+}
+
+table.metrics th,
+table.metrics td {
+  border-bottom: 1px solid var(--line);
+  padding: 0.55rem 0.6rem;
+  vertical-align: top;
+  text-align: left;
+}
+
+table.metrics thead th {
+  background: var(--head);
+  font-weight: 650;
+  position: sticky;
+  top: 0;
+  white-space: nowrap;
+}
+
+table.metrics .baseline,
+table.metrics .target,
+table.metrics .cadence {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+table.metrics .next-action,
+table.metrics .escalation {
+  min-width: 12rem;
+}
+
+.status {
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.status-on-track { color: var(--on); background: var(--on-bg); }
+.status-watch { color: var(--watch); background: var(--watch-bg); }
+.status-off-track { color: var(--off); background: var(--off-bg); }
+.status-escalate { color: var(--escalate); background: var(--escalate-bg); }
+
+table.metrics a {
+  color: var(--accent);
+}
+
+footer {
+  margin-top: 1.5rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}

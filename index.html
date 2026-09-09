@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Operating Scorecard</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Operating Scorecard</h1>
+    <p class="lede">
+      Public roll-up of sample finance-ops metrics: overdue AR, invoice count,
+      forecast accuracy, billing cycle time, payment control adoption, and
+      13-week cash minimum. The table below is baked into this HTML at build
+      time so first paint — and any <code>curl</code> of the file — shows
+      baseline, target, owner, cadence, status, next action, escalation trigger,
+      and tracker links without JavaScript.
+    </p>
+  </header>
+
+  <section aria-label="Summary">
+    <!--STATIC_KPIS-->
+<dl class="kpis">
+<div class="kpi"><dt>Metrics tracked</dt><dd>6</dd></div>
+<div class="kpi"><dt>As of</dt><dd>2026-09-09</dd></div>
+<div class="kpi"><dt>On track</dt><dd>1</dd></div>
+<div class="kpi"><dt>Watch</dt><dd>1</dd></div>
+<div class="kpi"><dt>Needs attention</dt><dd>4</dd></div>
+<div class="kpi"><dt>Trackers linked</dt><dd>5</dd></div>
+</dl>
+<!--/STATIC_KPIS-->
+  </section>
+
+  <section aria-label="Scorecard">
+    <h2>Metric scorecard</h2>
+    <p class="note">
+      JavaScript may filter by status; it is not required to see the rows or
+      follow the tracker Pages.
+    </p>
+    <div id="enhance-toolbar" class="toolbar hidden">
+      <label for="status-filter">Filter status</label>
+      <select id="status-filter">
+        <option value="">All statuses</option>
+        <option value="on-track">On track</option>
+        <option value="watch">Watch</option>
+        <option value="off-track">Off track</option>
+        <option value="escalate">Escalate</option>
+      </select>
+    </div>
+    <div class="table-wrap">
+      <!--STATIC_TABLE-->
+<table id="scorecard-table" class="metrics">
+<caption>Northwind Operations — operating scorecard as of 2026-09-09. Baseline, target, owner, cadence, status, next action, and escalation trigger per metric.</caption>
+<thead><tr><th scope="col">Metric</th><th scope="col">Baseline</th><th scope="col">Target</th><th scope="col">Owner</th><th scope="col">Cadence</th><th scope="col">Status</th><th scope="col">Next action</th><th scope="col">Escalation trigger</th><th scope="col">Tracker</th></tr></thead>
+<tbody>
+<tr data-status="escalate"><th scope="row" class="metric">Overdue AR</th><td class="baseline">$48,200</td><td class="target">≤ $15,000</td><td class="owner">AR Collections</td><td class="cadence">Weekly</td><td class="status status-escalate">Escalate</td><td class="next-action">Work the 90+ aging bucket; call the five largest past-due customers.</td><td class="escalation">Overdue AR exceeds $50,000 for two consecutive weeks.</td><td class="link"><a href="https://mferdickbutt.github.io/ar-aging-calculator/">AR aging calculator</a></td></tr>
+<tr data-status="on-track"><th scope="row" class="metric">Invoice count</th><td class="baseline">72 open</td><td class="target">≤ 80 open</td><td class="owner">Billing Ops</td><td class="cadence">Weekly</td><td class="status status-on-track">On track</td><td class="next-action">Keep current collections cadence; close remaining current-bucket invoices before month-end.</td><td class="escalation">Open invoice count exceeds 100 or grows two weeks in a row.</td><td class="link"><a href="https://mferdickbutt.github.io/ar-aging-calculator/">AR aging calculator</a></td></tr>
+<tr data-status="off-track"><th scope="row" class="metric">Forecast accuracy</th><td class="baseline">11.2% MAPE</td><td class="target">≤ 8% MAPE</td><td class="owner">FP&amp;A</td><td class="cadence">Monthly</td><td class="status status-off-track">Off track</td><td class="next-action">Revisit demand drivers for the last three miss months; publish a bias note with the next forecast.</td><td class="escalation">MAPE stays above 12% for two consecutive months.</td><td class="link"><a href="https://mferdickbutt.github.io/forecast-accuracy-tracker/">Forecast accuracy tracker</a></td></tr>
+<tr data-status="off-track"><th scope="row" class="metric">Billing cycle time</th><td class="baseline">18 days quote→paid</td><td class="target">≤ 12 days</td><td class="owner">Revenue Operations</td><td class="cadence">Weekly</td><td class="status status-off-track">Off track</td><td class="next-action">Clear the sent→approved queue; add a same-week follow-up on invoices older than 10 days.</td><td class="escalation">Median quote→paid exceeds 20 days in any week.</td><td class="link"><a href="https://mferdickbutt.github.io/billing-cycle-tracker/">Billing cycle tracker</a></td></tr>
+<tr data-status="watch"><th scope="row" class="metric">Payment control adoption</th><td class="baseline">91.8% average</td><td class="target">≥ 95%</td><td class="owner">AP Controls</td><td class="cadence">Monthly</td><td class="status status-watch">Watch</td><td class="next-action">Close vendor bank-account verification exceptions; coach the two lagging control owners.</td><td class="escalation">Average adoption falls below 90% or any named control drops month-over-month.</td><td class="link"><a href="https://mferdickbutt.github.io/payment-control-adoption-tracker/">Payment control adoption tracker</a></td></tr>
+<tr data-status="escalate"><th scope="row" class="metric">13-week cash minimum</th><td class="baseline">$16,200 (week 9)</td><td class="target">≥ $50,000</td><td class="owner">Treasury</td><td class="cadence">Weekly</td><td class="status status-escalate">Escalate</td><td class="next-action">Pull collections forward into weeks 8–9; defer non-critical vendor payments across the trough.</td><td class="escalation">Any week below $25,000, or two consecutive weeks below the $50,000 threshold.</td><td class="link"><a href="https://mferdickbutt.github.io/cashflow-13week-tracker/">13-week cashflow tracker</a></td></tr>
+</tbody>
+</table>
+<!--/STATIC_TABLE-->
+    </div>
+  </section>
+
+  <footer>
+    <p>
+      Source data: <a href="data/metrics.json"><code>data/metrics.json</code></a>.
+      Re-render: <code>node scripts/render-static.js</code>.
+      Tests: <code>bash scripts/test.sh</code>.
+    </p>
+  </footer>
+
+  <script src="js/scorecard.js"></script>
+</body>
+</html>
